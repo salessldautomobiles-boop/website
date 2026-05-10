@@ -977,39 +977,83 @@ footer {
 .reveal-delay-4 {
     transition-delay: 0.4s;
 }
-
 /* ==========================================
    HOME PAGE — HERO
    ========================================== */
+
 .hero {
     min-height: 100vh;
     padding-top: var(--nav-h);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     position: relative;
+    display: flex;
     overflow: hidden;
+    background: var(--dark);
 }
 
 .hero::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 120px;
-    background: var(--black);
-    transform: skewX(-4deg) translateX(-50%);
-    z-index: 2;
+    display: none;
 }
 
 .hero-left {
-    background: var(--dark);
+    background: transparent;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 80px 60px 80px 60px;
+    padding: 80px 60px;
     position: relative;
     z-index: 3;
+    width: 50%;
+    flex-shrink: 0;
+}
+
+/* REMOVED hero-left::after entirely */
+
+.hero-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    z-index: 2;
+    overflow: hidden;
+    clip-path: none;
+}
+
+/* Single gradient does all the blending */
+.hero-right::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 380px;
+    height: 100%;
+    background: linear-gradient(to right, var(--dark) 0%, var(--dark) 15%, transparent 100%);
+    z-index: 4;
+    pointer-events: none;
+}
+
+.hero-car-img,
+.hero-cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+    filter: brightness(0.75) contrast(1.1);
+    transform: scale(1.05);
+    animation: heroImgIn 1.2s var(--ease) 0.1s forwards;
+    opacity: 0;
+}
+
+@keyframes heroImgIn {
+    from {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.05);
+    }
 }
 
 .hero-eyebrow {
@@ -1079,7 +1123,7 @@ footer {
     gap: 36px;
     margin-top: 56px;
     padding-top: 32px;
-    border-top: 1px solid var(--dark3);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     opacity: 0;
     animation: fadeUp 0.7s var(--ease) 0.8s forwards;
 }
@@ -1105,60 +1149,6 @@ footer {
     color: var(--muted);
     text-transform: uppercase;
     margin-top: 4px;
-}
-
-.hero-right {
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    background: var(--dark2);
-}
-
-.hero-right::before {
-    content: '';
-    position: absolute;
-    top: -10%;
-    left: -5%;
-    width: 30%;
-    height: 120%;
-    background: repeating-linear-gradient(105deg,
-            transparent, transparent 18px,
-            rgba(255, 190, 60, 0.04) 18px,
-            rgba(255, 190, 60, 0.04) 20px);
-    z-index: 1;
-    animation: stripeMove 6s linear infinite;
-}
-
-@keyframes stripeMove {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(40px);
-    }
-}
-
-.hero-car-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.7) contrast(1.1);
-    transform: scale(1.05);
-    animation: heroImgIn 1.2s var(--ease) 0.1s forwards;
-    opacity: 0;
-}
-
-@keyframes heroImgIn {
-    from {
-        opacity: 0;
-        transform: scale(1.1);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1.05);
-    }
 }
 
 .hero-car-placeholder {
@@ -1206,6 +1196,36 @@ footer {
     font-size: 28px;
     line-height: 1;
     letter-spacing: -1px;
+}
+
+/* ==========================================
+   HERO — RESPONSIVE
+   ========================================== */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .hero-left {
+        width: 100%;
+        padding: 60px 24px;
+    }
+
+    .hero-right {
+        position: relative;
+        width: 100%;
+        height: 320px;
+    }
+
+    .hero-right::before {
+        display: none;
+    }
+
+    .hero-badge {
+        bottom: 20px;
+        right: 20px;
+    }
 }
 
 /* ==========================================
@@ -2247,5 +2267,1383 @@ input[type="range"].price-slider {
 
     body {
         cursor: auto;
+    }
+}
+
+
+/* ==========================================
+   ABOUT PAGE — HERO
+   ========================================== */
+.about-hero {
+    padding-top: var(--nav-h);
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Animated diagonal stripe background */
+.about-hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.about-hero-lines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(105deg,
+            transparent,
+            transparent 40px,
+            rgba(255, 190, 60, 0.03) 40px,
+            rgba(255, 190, 60, 0.03) 42px);
+    animation: stripeMove 10s linear infinite;
+}
+
+/* Large ghost text watermark */
+.about-hero::before {
+    content: 'SLD';
+    position: absolute;
+    right: -40px;
+    bottom: -40px;
+    font-family: var(--font-display);
+    font-size: 340px;
+    font-weight: 900;
+    color: rgba(255, 190, 60, 0.03);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -12px;
+    z-index: 0;
+}
+
+/* Gold accent bar on left */
+.about-hero::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15%;
+    height: 60%;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    z-index: 1;
+}
+
+.about-hero-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    padding: 80px 60px;
+}
+
+.about-hero-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(56px, 7vw, 96px);
+    line-height: 0.92;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin: 20px 0 28px;
+}
+
+.about-hero-title em {
+    color: var(--gold);
+    font-style: italic;
+    display: block;
+}
+
+.about-hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 440px;
+    margin-bottom: 48px;
+}
+
+.about-hero-badges {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--dark3);
+    width: fit-content;
+}
+
+.about-badge {
+    padding: 20px 28px;
+    text-align: center;
+}
+
+.about-badge-divider {
+    width: 1px;
+    height: 48px;
+    background: var(--dark3);
+    flex-shrink: 0;
+}
+
+.about-badge-num {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 36px;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.about-badge-num span {
+    color: var(--gold);
+    font-size: 22px;
+}
+
+.about-badge-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 6px;
+}
+
+/* Quote block */
+.about-quote-block {
+    background: var(--dark2);
+    border: 1px solid var(--dark3);
+    border-left: 3px solid var(--gold);
+    padding: 48px 44px;
+    position: relative;
+}
+
+.about-quote-mark {
+    font-family: var(--font-display);
+    font-size: 120px;
+    font-weight: 900;
+    color: rgba(255, 190, 60, 0.12);
+    line-height: 0.7;
+    margin-bottom: 16px;
+    display: block;
+    letter-spacing: -4px;
+}
+
+.about-quote-text {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(20px, 2.2vw, 28px);
+    line-height: 1.3;
+    color: var(--white);
+    font-style: italic;
+    letter-spacing: 0.2px;
+    margin-bottom: 32px;
+    border: none;
+}
+
+.about-quote-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.about-quote-line {
+    width: 32px;
+    height: 1.5px;
+    background: var(--gold);
+    flex-shrink: 0;
+}
+
+.about-quote-author span {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* ==========================================
+   ABOUT PAGE — MISSION
+   ========================================== */
+.about-mission {
+    background: var(--black);
+}
+
+.about-mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.about-mission-text p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.about-mission-text p strong {
+    color: var(--gold);
+    font-weight: 600;
+}
+
+.about-mission-text p:last-of-type {
+    margin-bottom: 0;
+}
+
+/* ==========================================
+   ABOUT PAGE — VALUES
+   ========================================== */
+.about-values {
+    background: var(--dark);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-values::before {
+    content: 'VALUES';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-display);
+    font-size: 200px;
+    font-weight: 900;
+    color: rgba(255, 190, 60, 0.025);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -8px;
+}
+
+.about-values-inner {
+    padding: 0 60px;
+}
+
+.about-values-header {
+    margin-bottom: 56px;
+}
+
+.about-values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+}
+
+.about-value-card {
+    background: var(--dark2);
+    border: 1px solid var(--dark3);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s var(--ease), background 0.3s;
+}
+
+.about-value-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s var(--ease);
+}
+
+.about-value-card:hover::before {
+    transform: scaleX(1);
+}
+
+.about-value-card:hover {
+    border-color: rgba(255, 190, 60, 0.3);
+    background: rgba(255, 190, 60, 0.03);
+}
+
+.about-value-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    opacity: 0.6;
+}
+
+.about-value-icon {
+    font-size: 32px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.about-value-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.about-value-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* ==========================================
+   ABOUT PAGE — PROCESS
+   ========================================== */
+.about-process {
+    background: var(--black);
+}
+
+.about-process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+    margin-top: 8px;
+}
+
+.about-step {
+    padding: 40px 32px 40px 0;
+    position: relative;
+}
+
+.about-step-num {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 64px;
+    color: rgba(255, 190, 60, 0.1);
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+}
+
+.about-step-content {
+    padding-left: 4px;
+    border-left: 2px solid var(--dark3);
+    padding-left: 20px;
+    transition: border-color 0.3s;
+}
+
+.about-step:hover .about-step-content {
+    border-left-color: var(--gold);
+}
+
+.about-step-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.about-step-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* Horizontal connector line between steps */
+.about-step-connector {
+    display: none;
+}
+
+/* Top connector bar across all steps */
+.about-process-steps::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold) 0%, rgba(255, 190, 60, 0.2) 100%);
+}
+
+/* ==========================================
+   ABOUT PAGE — RESPONSIVE
+   ========================================== */
+@media (max-width: 1100px) {
+    .about-values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-process-steps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero-inner {
+        grid-template-columns: 1fr;
+        padding: 60px 24px;
+        gap: 48px;
+    }
+
+    .about-hero::before {
+        font-size: 160px;
+        right: -20px;
+        bottom: -20px;
+    }
+
+    .about-hero-badges {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .about-quote-block {
+        padding: 32px 28px;
+    }
+
+    .about-mission-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-values-inner {
+        padding: 0 24px;
+    }
+
+    .about-values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-process-steps {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .about-process-steps::before {
+        display: none;
+    }
+}
+
+
+/* ==========================================
+   CONTACT PAGE — HERO
+   ========================================== */
+.contact-hero {
+    padding-top: var(--nav-h);
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    min-height: 52vh;
+    display: flex;
+    align-items: center;
+}
+
+.contact-hero-bg {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(105deg,
+            transparent,
+            transparent 40px,
+            rgba(255, 190, 60, 0.03) 40px,
+            rgba(255, 190, 60, 0.03) 42px);
+    animation: stripeMove 10s linear infinite;
+    pointer-events: none;
+}
+
+.contact-hero::before {
+    content: 'CONTACT';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-display);
+    font-size: 200px;
+    font-weight: 900;
+    color: rgba(255, 190, 60, 0.03);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -8px;
+    z-index: 0;
+}
+
+.contact-hero::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15%;
+    height: 60%;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    z-index: 1;
+}
+
+.contact-hero-inner {
+    position: relative;
+    z-index: 2;
+    padding: 80px 60px;
+    max-width: 680px;
+}
+
+.contact-hero-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(56px, 7vw, 96px);
+    line-height: 0.92;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin: 20px 0 24px;
+}
+
+.contact-hero-title em {
+    color: var(--gold);
+    font-style: italic;
+    display: block;
+}
+
+.contact-hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 480px;
+}
+
+/* ==========================================
+   CONTACT PAGE — MAIN SECTION
+   ========================================== */
+.contact-section {
+    background: var(--black);
+    padding: 80px 60px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 72px;
+    align-items: start;
+}
+
+/* ── Info Cards ── */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contact-card {
+    background: var(--dark);
+    border: 1px solid var(--dark3);
+    padding: 24px 24px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    position: relative;
+    transition: border-color 0.3s var(--ease);
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s var(--ease);
+}
+
+.contact-card:hover::before {
+    transform: scaleY(1);
+}
+
+.contact-card:hover {
+    border-color: rgba(255, 190, 60, 0.3);
+}
+
+.contact-card-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.contact-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.contact-card-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.contact-card-value {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--white);
+    line-height: 1.6;
+}
+
+.contact-card-sub {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+.contact-card-link {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--gold);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: block;
+    line-height: 1.8;
+}
+
+.contact-card-link:hover {
+    color: var(--white);
+}
+
+.contact-quick {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+/* ── Form ── */
+.contact-form-wrap {
+    background: var(--dark);
+    border: 1px solid var(--dark3);
+    border-top: 2px solid var(--gold);
+    padding: 40px 40px;
+}
+
+.contact-form-header {
+    margin-bottom: 36px;
+}
+
+.contact-form-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(24px, 2.5vw, 36px);
+    text-transform: uppercase;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-top: 12px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contact-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.contact-label span {
+    color: var(--gold);
+}
+
+.contact-input {
+    background: var(--dark2);
+    border: 1px solid var(--dark4);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 13px 16px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    width: 100%;
+}
+
+.contact-input::placeholder {
+    color: var(--muted2);
+}
+
+.contact-input:focus {
+    border-color: var(--gold);
+    background: rgba(255, 190, 60, 0.03);
+}
+
+.contact-select {
+    appearance: none;
+    cursor: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23FFBE3C' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+}
+
+.contact-select option {
+    background: var(--dark2);
+    color: var(--white);
+}
+
+.contact-textarea {
+    resize: vertical;
+    min-height: 120px;
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+.contact-char-count {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted2);
+    text-align: right;
+    letter-spacing: 1px;
+}
+
+.contact-submit {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    padding: 16px 36px;
+    border: none;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    cursor: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s, transform 0.2s;
+    align-self: flex-start;
+    margin-top: 4px;
+}
+
+.contact-submit:hover {
+    background: var(--white);
+    transform: translateY(-2px);
+}
+
+.contact-submit svg {
+    transition: transform 0.2s;
+}
+
+.contact-submit:hover svg {
+    transform: translateX(4px);
+}
+
+.contact-success {
+    display: none;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--gold);
+    background: rgba(255, 190, 60, 0.08);
+    border: 1px solid rgba(255, 190, 60, 0.25);
+    padding: 14px 18px;
+    margin-top: 4px;
+}
+
+/* ==========================================
+   CONTACT PAGE — MAP
+   ========================================== */
+.contact-map-section {
+    background: var(--dark);
+    padding: 80px 60px;
+    border-top: 1px solid var(--dark3);
+}
+
+.contact-map-header {
+    margin-bottom: 40px;
+}
+
+.contact-map-wrap {
+    position: relative;
+    height: 420px;
+    border: 1px solid var(--dark3);
+    overflow: hidden;
+}
+
+.contact-map-wrap iframe {
+    filter: grayscale(1) invert(0.9) contrast(0.85) brightness(0.8);
+    display: block;
+}
+
+/* Map overlay pin card */
+.contact-map-pin {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 10;
+    background: var(--dark);
+    border: 1px solid var(--dark3);
+    border-left: 3px solid var(--gold);
+    padding: 16px 20px;
+    pointer-events: none;
+}
+
+.contact-map-pin-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.contact-map-pin-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.contact-map-pin-label strong {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 4px;
+}
+
+.contact-map-pin-label span {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    display: block;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   CONTACT PAGE — RESPONSIVE
+   ========================================== */
+@media (max-width: 1100px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .contact-form-wrap {
+        padding: 32px 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-hero-inner {
+        padding: 60px 24px;
+    }
+
+    .contact-section {
+        padding: 60px 24px;
+    }
+
+    .contact-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-map-section {
+        padding: 60px 24px;
+    }
+
+    .contact-map-wrap {
+        height: 280px;
+    }
+
+    .contact-map-pin {
+        display: none;
+    }
+
+    .contact-quick {
+        flex-direction: column;
+    }
+}
+
+/* ==========================================
+   SELL YOUR CAR PAGE — HERO
+   ========================================== */
+.sell-hero {
+    padding-top: var(--nav-h);
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+.sell-hero-bg {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(105deg,
+            transparent,
+            transparent 40px,
+            rgba(255, 190, 60, 0.03) 40px,
+            rgba(255, 190, 60, 0.03) 42px);
+    animation: stripeMove 10s linear infinite;
+    pointer-events: none;
+}
+
+.sell-hero::before {
+    content: 'SELL';
+    position: absolute;
+    right: -20px;
+    bottom: -40px;
+    font-family: var(--font-display);
+    font-size: 300px;
+    font-weight: 900;
+    color: rgba(255, 190, 60, 0.03);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -12px;
+    z-index: 0;
+}
+
+.sell-hero::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15%;
+    height: 60%;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    z-index: 1;
+}
+
+.sell-hero-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 72px;
+    align-items: center;
+    padding: 80px 60px;
+    width: 100%;
+}
+
+/* Assistance badge */
+.sell-assist-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 190, 60, 0.08);
+    border: 1px solid rgba(255, 190, 60, 0.2);
+    padding: 10px 18px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--muted);
+}
+
+.sell-assist-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(0.8);
+    }
+}
+
+.sell-assist-badge a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.sell-assist-badge a:hover {
+    color: var(--white);
+}
+
+.sell-hero-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(52px, 6.5vw, 90px);
+    line-height: 0.92;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin: 20px 0 28px;
+}
+
+.sell-hero-title em {
+    color: var(--gold);
+    font-style: italic;
+    display: block;
+}
+
+.sell-hero-title .outline {
+    -webkit-text-stroke: 1.5px var(--white);
+    color: transparent;
+    display: block;
+}
+
+.sell-hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 440px;
+    margin-bottom: 36px;
+}
+
+.sell-why-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sell-why-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.sell-why-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+/* Right side contact cards */
+.sell-contact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.sell-contact-card {
+    background: var(--dark2);
+    border: 1px solid var(--dark3);
+    padding: 20px 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    position: relative;
+    transition: border-color 0.3s;
+}
+
+.sell-contact-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s var(--ease);
+}
+
+.sell-contact-card:hover::before {
+    transform: scaleY(1);
+}
+
+.sell-contact-card:hover {
+    border-color: rgba(255, 190, 60, 0.3);
+}
+
+.sell-contact-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.sell-contact-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.sell-contact-val {
+    font-size: 13px;
+    color: var(--white);
+    line-height: 1.6;
+}
+
+.sell-contact-sub {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+.sell-contact-link {
+    display: block;
+    font-size: 14px;
+    color: var(--gold);
+    text-decoration: none;
+    line-height: 1.8;
+    transition: color 0.2s;
+}
+
+.sell-contact-link:hover {
+    color: var(--white);
+}
+
+.sell-social-row {
+    background: var(--dark2);
+    border: 1px solid var(--dark3);
+    padding: 20px 24px;
+}
+
+/* ==========================================
+   SELL YOUR CAR PAGE — FORM
+   ========================================== */
+.sell-form-section {
+    background: var(--black);
+    padding: 80px 60px;
+}
+
+.sell-form-header {
+    margin-bottom: 60px;
+}
+
+.sell-form-intro {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-top: 16px;
+}
+
+.sell-form {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Numbered form blocks */
+.sell-form-block {
+    background: var(--dark);
+    border: 1px solid var(--dark3);
+    border-left: 3px solid var(--gold);
+    padding: 36px 40px;
+    margin-bottom: 16px;
+}
+
+.sell-block-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.sell-block-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--gold);
+    background: rgba(255, 190, 60, 0.1);
+    border: 1px solid rgba(255, 190, 60, 0.25);
+    padding: 4px 10px;
+    letter-spacing: 2px;
+}
+
+.sell-form-row-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.sell-form-row-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* Upload boxes */
+.sell-upload-box {
+    background: var(--dark2);
+    border: 1px dashed var(--dark4);
+    padding: 28px 20px;
+    text-align: center;
+    position: relative;
+    transition: border-color 0.3s, background 0.3s;
+    cursor: pointer;
+}
+
+.sell-upload-box:hover,
+.sell-upload-box.sell-upload-done {
+    border-color: var(--gold);
+    border-style: solid;
+    background: rgba(255, 190, 60, 0.03);
+}
+
+.sell-upload-box input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.sell-upload-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    pointer-events: none;
+}
+
+.sell-upload-icon {
+    font-size: 28px;
+    margin-bottom: 4px;
+}
+
+.sell-upload-text {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--white);
+}
+
+.sell-upload-hint {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+}
+
+.sell-upload-filename {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--gold);
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+/* Image preview thumbnails */
+.sell-img-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.sell-img-thumb {
+    width: 60px;
+    height: 50px;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid var(--dark3);
+    flex-shrink: 0;
+}
+
+/* Submit area */
+.sell-form-submit {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.sell-submit-btn {
+    font-size: 14px;
+    padding: 18px 48px;
+}
+
+.sell-form-note {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    line-height: 1.6;
+    max-width: 400px;
+}
+
+/* ==========================================
+   SELL PAGE — RESPONSIVE
+   ========================================== */
+@media (max-width: 1100px) {
+    .sell-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .sell-form-row-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sell-form-block {
+        padding: 28px 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sell-hero-inner {
+        padding: 60px 24px;
+    }
+
+    .sell-hero::before {
+        font-size: 140px;
+    }
+
+    .sell-form-section {
+        padding: 60px 24px;
+    }
+
+    .sell-form-row-3,
+    .sell-form-row-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .sell-form-block {
+        padding: 24px 20px;
+        border-left-width: 2px;
     }
 }
