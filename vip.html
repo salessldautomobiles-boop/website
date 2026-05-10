@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Numbers — SLD Automobiles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,900&family=Barlow:wght@400;500;600&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursorDot" style="position:fixed;top:0;left:0">
+        <div class="cursor-dot"></div>
+    </div>
+    <div class="cursor" id="cursorRing" style="position:fixed;top:0;left:0">
+        <div class="cursor-ring"></div>
+    </div>
+
+    <!-- NAV -->
+    <nav id="mainNav">
+        <a href="home.html" class="nav-logo">
+            <img src="media/logo/sld_logo.png" alt="SLD Automobiles Logo" class="site-logo">
+        </a>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li class="has-drop">
+                <a href="shop.html">Shop</a>
+                <div class="dropdown">
+                    <a href="shop.html">Hatchback</a>
+                    <a href="shop.html">Sedan</a>
+                    <a href="shop.html">SUV</a>
+                    <a href="shop.html">Compact SUV</a>
+                </div>
+            </li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="sell.html">Sell Your Car</a></li>
+            <li><a href="vip.html" class="active">VIP Numbers</a></li>
+            <li><a href="contact.html" class="nav-cta">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- VIP HERO -->
+    <section class="vip-hero">
+        <div class="vip-hero-bg"></div>
+
+        <!-- Floating mock plates for atmosphere -->
+        <div class="vip-plates-float" aria-hidden="true">
+            <div class="vip-plate-float vip-pf-1">HR 26 AB 0001</div>
+            <div class="vip-plate-float vip-pf-2">DL 01 AA 0786</div>
+            <div class="vip-plate-float vip-pf-3">HR 26 CK 7777</div>
+            <div class="vip-plate-float vip-pf-4">DL 9C A 0009</div>
+            <div class="vip-plate-float vip-pf-5">HR 26 AA 0100</div>
+        </div>
+
+        <div class="vip-hero-inner">
+            <div class="vip-hero-content reveal">
+                <div class="vip-hero-eyebrow">
+                    <span class="vip-crown">👑</span>
+                    Premium VIP Number Plates
+                </div>
+                <h1 class="vip-hero-title">
+                    Make Your Car<br>
+                    Truly <em>Outstanding.</em>
+                </h1>
+                <p class="vip-hero-sub">
+                    Your car is more than just a machine — it's your pride, your passion, and your personality on
+                    wheels. Every detail speaks of style, and nothing completes that statement better than a premium VIP
+                    number plate.
+                </p>
+                <div class="vip-hero-actions">
+                    <a href="contact.html" class="btn-primary">
+                        Enquire Now
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                    <a href="tel:919891617171" class="btn-ghost">Call Us Now</a>
+                </div>
+            </div>
+
+            <!-- Hero plate showcase -->
+            <div class="vip-hero-plate-wrap reveal reveal-delay-2">
+                <div class="vip-hero-plate-label">
+                    <span></span>Your Plate Could Look Like This
+                </div>
+                <div class="vip-showcase-plate">
+                    <div class="vip-plate-india">IND 🇮🇳</div>
+                    <div class="vip-plate-number" id="vipPlateDisplay">HR 26 AB 0001</div>
+                </div>
+                <div class="vip-plate-input-row">
+                    <input type="text" class="vip-plate-input" id="vipPlateInput" maxlength="12"
+                        placeholder="Type your number..." oninput="previewPlate(this.value)">
+                    <span class="vip-plate-hint">Preview your plate above</span>
+                </div>
+                <div class="vip-hero-stats">
+                    <div class="vip-hero-stat">
+                        <span class="vip-stat-num">500<span>+</span></span>
+                        <span class="vip-stat-label">Numbers Sold</span>
+                    </div>
+                    <div class="vip-stat-sep"></div>
+                    <div class="vip-hero-stat">
+                        <span class="vip-stat-num">5<span>+</span></span>
+                        <span class="vip-stat-label">Years Experience</span>
+                    </div>
+                    <div class="vip-stat-sep"></div>
+                    <div class="vip-hero-stat">
+                        <span class="vip-stat-num">100<span>%</span></span>
+                        <span class="vip-stat-label">Genuine RTO</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-strip">
+        <div class="marquee-track">
+            <span class="marquee-item">Premium VIP Numbers</span>
+            <span class="marquee-item">Lucky Digits</span>
+            <span class="marquee-item">Exclusive Sequences</span>
+            <span class="marquee-item">Status Symbol</span>
+            <span class="marquee-item">HR · DL · UP · PB</span>
+            <span class="marquee-item">Genuine RTO Numbers</span>
+            <span class="marquee-item">Premium VIP Numbers</span>
+            <span class="marquee-item">Lucky Digits</span>
+            <span class="marquee-item">Exclusive Sequences</span>
+            <span class="marquee-item">Status Symbol</span>
+            <span class="marquee-item">HR · DL · UP · PB</span>
+            <span class="marquee-item">Genuine RTO Numbers</span>
+        </div>
+    </div>
+
+    <!-- WHY VIP -->
+    <section class="vip-why section">
+        <div class="section-header reveal">
+            <div>
+                <div class="section-label">The Value of VIP</div>
+                <h2 class="section-title">Why Buy a VIP<br><em>Number Plate?</em></h2>
+            </div>
+        </div>
+        <div class="vip-why-grid">
+            <div class="vip-why-card reveal reveal-delay-1">
+                <div class="vip-why-icon">🎯</div>
+                <div class="vip-why-num">01</div>
+                <h3 class="vip-why-title">Personal Expression</h3>
+                <p class="vip-why-desc">Show your individuality with a number plate that matches your personality — your
+                    lucky digits, initials, or a meaningful sequence.</p>
+                <div class="vip-why-plate-eg">HR 26 AB 0001</div>
+            </div>
+            <div class="vip-why-card reveal reveal-delay-2">
+                <div class="vip-why-icon">💎</div>
+                <div class="vip-why-num">02</div>
+                <h3 class="vip-why-title">Prestige & Luxury</h3>
+                <p class="vip-why-desc">A VIP registration is more than a number — it's a status symbol that speaks
+                    before you even step out of the car.</p>
+                <div class="vip-why-plate-eg">DL 01 AA 0786</div>
+            </div>
+            <div class="vip-why-card reveal reveal-delay-3">
+                <div class="vip-why-icon">🔐</div>
+                <div class="vip-why-num">03</div>
+                <h3 class="vip-why-title">Exclusivity Guaranteed</h3>
+                <p class="vip-why-desc">Own a number that very few will ever have, making your car stand out everywhere
+                    you go — on the road and in the parking lot.</p>
+                <div class="vip-why-plate-eg">HR 26 CK 7777</div>
+            </div>
+            <div class="vip-why-card reveal reveal-delay-4">
+                <div class="vip-why-icon">📈</div>
+                <div class="vip-why-num">04</div>
+                <h3 class="vip-why-title">Investment Value</h3>
+                <p class="vip-why-desc">Premium numbers often appreciate over time, adding tangible value to your asset
+                    and making them a smart long-term choice.</p>
+                <div class="vip-why-plate-eg">DL 9C A 0009</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT VIP SECTION -->
+    <section class="vip-about">
+        <div class="vip-about-inner">
+            <div class="vip-about-left reveal">
+                <div class="section-label">What We Offer</div>
+                <h2 class="section-title">Want Fancy /<br><em>VIP Numbers?</em></h2>
+                <p class="vip-about-desc">
+                    At SLD Automobiles, we specialise in offering exclusive fancy registration numbers that set your car
+                    apart from the crowd. Whether you're looking for a number that reflects your lucky digits, initials,
+                    or a one-of-a-kind sequence — we make sure your vehicle carries a registration as unique as your
+                    journey.
+                </p>
+                <ul class="vip-about-list">
+                    <li>
+                        <span class="vip-list-dot"></span>
+                        Numbers available across HR, DL, UP, PB and more
+                    </li>
+                    <li>
+                        <span class="vip-list-dot"></span>
+                        100% genuine RTO-issued registrations
+                    </li>
+                    <li>
+                        <span class="vip-list-dot"></span>
+                        Lucky numbers, repeating digits, initials & custom sequences
+                    </li>
+                    <li>
+                        <span class="vip-list-dot"></span>
+                        Full paperwork assistance included
+                    </li>
+                </ul>
+                <a href="contact.html" class="btn-primary" style="margin-top: 36px; display: inline-flex;">
+                    Enquire Now
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </a>
+            </div>
+            <div class="vip-about-right reveal reveal-delay-2">
+                <!-- Plate stack showcase -->
+                <div class="vip-plate-stack">
+                    <div class="vip-stack-label">
+                        <div class="section-label">Sample Numbers</div>
+                    </div>
+                    <div class="vip-stack-plates">
+                        <div class="vip-stack-plate vip-sp-featured">
+                            <div class="vip-sp-state">HR 26</div>
+                            <div class="vip-sp-num">AA <span>0001</span></div>
+                            <div class="vip-sp-tag">Most Sought After</div>
+                        </div>
+                        <div class="vip-stack-plate">
+                            <div class="vip-sp-state">HR 26</div>
+                            <div class="vip-sp-num">CK <span>7777</span></div>
+                            <div class="vip-sp-tag">Lucky Number</div>
+                        </div>
+                        <div class="vip-stack-plate">
+                            <div class="vip-sp-state">DL 01</div>
+                            <div class="vip-sp-num">AA <span>0786</span></div>
+                            <div class="vip-sp-tag">Premium Series</div>
+                        </div>
+                        <div class="vip-stack-plate">
+                            <div class="vip-sp-state">HR 26</div>
+                            <div class="vip-sp-num">AB <span>0100</span></div>
+                            <div class="vip-sp-tag">Round Figure</div>
+                        </div>
+                    </div>
+                    <div class="vip-stack-note">
+                        <span>📞</span>
+                        Contact us for current availability and pricing
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIP GALLERY -->
+    <section class="vip-gallery section">
+        <div class="section-header reveal">
+            <div>
+                <div class="section-label">Available Numbers</div>
+                <h2 class="section-title">Browse Our<br><em>Collection.</em></h2>
+            </div>
+            <div class="vip-gallery-search-wrap">
+                <input type="text" id="vipSearch" class="vip-gallery-search" placeholder="Search a number..."
+                    oninput="filterGallery()">
+            </div>
+        </div>
+    
+        <!-- Filter tabs -->
+        <div class="vip-filter-tabs reveal">
+            <button class="vip-filter-tab active" onclick="setFilter('all', this)">All</button>
+            <button class="vip-filter-tab" onclick="setFilter('HR', this)">HR Series</button>
+            <button class="vip-filter-tab" onclick="setFilter('DL', this)">DL Series</button>
+            <button class="vip-filter-tab" onclick="setFilter('lucky', this)">Lucky Numbers</button>
+            <button class="vip-filter-tab" onclick="setFilter('premium', this)">Premium</button>
+        </div>
+    
+        <!-- Grid -->
+        <div class="vip-gallery-grid" id="vipGalleryGrid"></div>
+    
+        <!-- Empty state -->
+        <div class="vip-gallery-empty" id="vipGalleryEmpty">
+            <div class="empty-icon">🔍</div>
+            <div class="empty-title">No Numbers Found</div>
+            <p class="empty-sub">Try a different search or filter.</p>
+        </div>
+    </section>
+
+    <!-- SELL CAR CROSS-PROMO -->
+    <section class="vip-crosspromo">
+        <div class="vip-crosspromo-inner reveal">
+            <div class="vip-crosspromo-icon">🚗</div>
+            <div>
+                <div class="section-label" style="margin-bottom: 10px;">Also Looking To Sell?</div>
+                <h2 class="vip-crosspromo-title">Wanna Sell Your Car?</h2>
+                <p class="vip-crosspromo-sub">Get the best price for your vehicle with our transparent, hassle-free
+                    evaluation process.</p>
+            </div>
+            <a href="sell.html" class="btn-primary">
+                Get Started Here
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="vip-final-cta">
+        <div class="vip-final-bg"></div>
+        <div class="vip-final-inner reveal">
+            <div class="vip-final-plates" aria-hidden="true">
+                <span class="vip-fcta-plate">HR 26 AB 0001</span>
+                <span class="vip-fcta-plate vip-fcta-plate--dim">DL 01 AA 0786</span>
+                <span class="vip-fcta-plate vip-fcta-plate--dim">HR 26 CK 7777</span>
+            </div>
+            <div class="section-label">Claim Your Number</div>
+            <h2 class="vip-final-title">
+                Drive with Identity.<br><em>Drive with Pride.</em>
+            </h2>
+            <p class="vip-final-sub">
+                Explore our collection today and claim your perfect number before someone else does!
+            </p>
+            <div class="vip-final-actions">
+                <a href="contact.html" class="btn-primary">
+                    Get Started
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </a>
+                <a href="tel:919891617171" class="btn-ghost">Call +91 9891617171</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">SLD <span>Automobiles</span></div>
+                <p class="footer-tagline">Drive with trust, powered by 5+ years of excellence. Whether you're buying
+                    your first car or looking to upgrade, SLD Automobiles brings you a seamless, honest experience.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">f</a>
+                    <a href="#" class="social-link">in</a>
+                    <a href="#" class="social-link">ig</a>
+                    <a href="#" class="social-link">yt</a>
+                </div>
+            </div>
+            <div>
+                <div class="footer-col-title">Quick Links</div>
+                <ul class="footer-links">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="shop.html">Shop Cars</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="sell.html">Sell Your Car</a></li>
+                    <li><a href="vip.html">VIP Numbers</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Categories</div>
+                <ul class="footer-links">
+                    <li><a href="shop.html">SUV</a></li>
+                    <li><a href="shop.html">Sedan</a></li>
+                    <li><a href="shop.html">Hatchback</a></li>
+                    <li><a href="shop.html">Compact SUV</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Reach Us</div>
+                <div class="footer-contact-item"><span>📞</span><span><a href="tel:919999031786"
+                            style="color:inherit;text-decoration:none;">+91 9999031786</a></span></div>
+                <div class="footer-contact-item"><span>📞</span><span><a href="tel:919050005018"
+                            style="color:inherit;text-decoration:none;">+91 9050005018</a></span></div>
+                <div class="footer-contact-item"><span>📞</span><span><a href="tel:919891617171"
+                            style="color:inherit;text-decoration:none;">+91 9891617171</a></span></div>
+                <div class="footer-contact-item"><span>✉️</span><span>sales.sldautomobiles@gmail.com</span></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-copy">© 2025 <span>SLD Automobiles</span>. All rights reserved.</div>
+            <div class="footer-copy">Built with 🔥 for the road.</div>
+        </div>
+    </footer>
+
+    <script src="inventory.js"></script>
+    <script>
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 40);
+        });
+
+        function previewPlate(val) {
+            const display = document.getElementById('vipPlateDisplay');
+            display.textContent = val.toUpperCase() || 'HR 26 AB 0001';
+        }
+
+        /* ── VIP GALLERY DATA ─────────────────────────────
+       Add / remove numbers here to update the gallery.
+       tags: 'HR' | 'DL' | 'lucky' | 'premium' (can combine)
+       status: 'available' | 'sold'
+       ─────────────────────────────────────────────── */
+        const VIP_NUMBERS = [
+            { plate: 'HR 26 AA 0001', label: 'Most Sought After', tags: ['HR', 'premium'], status: 'available' },
+            { plate: 'HR 26 AA 0007', label: 'Lucky 7', tags: ['HR', 'lucky'], status: 'available' },
+            { plate: 'HR 26 AA 0009', label: 'Lucky Number', tags: ['HR', 'lucky'], status: 'available' },
+            { plate: 'HR 26 CK 7777', label: 'Quad Lucky', tags: ['HR', 'lucky'], status: 'available' },
+            { plate: 'HR 26 AB 0100', label: 'Round Figure', tags: ['HR', 'premium'], status: 'available' },
+            { plate: 'HR 26 AB 0786', label: 'Premium Series', tags: ['HR', 'premium'], status: 'available' },
+            { plate: 'HR 26 CD 1111', label: 'Quad Series', tags: ['HR', 'lucky'], status: 'available' },
+            { plate: 'HR 26 AB 0555', label: 'Triple 5', tags: ['HR', 'lucky'], status: 'available' },
+            { plate: 'DL 01 AA 0001', label: 'Delhi Premium', tags: ['DL', 'premium'], status: 'available' },
+            { plate: 'DL 01 AA 0786', label: 'Delhi Series', tags: ['DL', 'premium'], status: 'available' },
+            { plate: 'DL 9C A 0009', label: 'Lucky Delhi', tags: ['DL', 'lucky'], status: 'available' },
+            { plate: 'DL 01 CK 7777', label: 'Quad Delhi', tags: ['DL', 'lucky'], status: 'available' },
+            { plate: 'HR 26 AA 0010', label: 'Round Ten', tags: ['HR', 'premium'], status: 'sold' },
+            { plate: 'DL 01 AA 1000', label: 'Millennium', tags: ['DL', 'premium'], status: 'sold' },
+        ];
+
+        let activeFilter = 'all';
+
+        function setFilter(filter, btn) {
+            activeFilter = filter;
+            document.querySelectorAll('.vip-filter-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            filterGallery();
+        }
+
+        function filterGallery() {
+            const query = document.getElementById('vipSearch').value.toLowerCase().replace(/\s/g, '');
+            const grid = document.getElementById('vipGalleryGrid');
+            const empty = document.getElementById('vipGalleryEmpty');
+            grid.innerHTML = '';
+
+            const filtered = VIP_NUMBERS.filter(n => {
+                const matchFilter = activeFilter === 'all' || n.tags.includes(activeFilter);
+                const matchSearch = n.plate.toLowerCase().replace(/\s/g, '').includes(query);
+                return matchFilter && matchSearch;
+            });
+
+            if (!filtered.length) {
+                empty.style.display = 'block';
+                return;
+            }
+            empty.style.display = 'none';
+
+            filtered.forEach((n, i) => {
+                const card = document.createElement('div');
+                card.className = 'vip-gallery-card reveal';
+                card.style.animationDelay = `${(i % 6) * 0.06}s`;
+                card.innerHTML = `
+                    <div class="vip-gc-status ${n.status === 'sold' ? 'vip-gc-sold' : 'vip-gc-avail'}">
+                        ${n.status === 'sold' ? 'Sold' : 'Available'}
+                    </div>
+                    <div class="vip-gc-plate-wrap">
+                        <div class="vip-gc-plate ${n.status === 'sold' ? 'vip-gc-plate--sold' : ''}">
+                            <div class="vip-gc-plate-ind">IND 🇮🇳</div>
+                            <div class="vip-gc-plate-num">${n.plate}</div>
+                        </div>
+                    </div>
+                    <div class="vip-gc-body">
+                        <div class="vip-gc-tags">
+                            ${n.tags.map(t => `<span class="vip-gc-tag">${t}</span>`).join('')}
+                        </div>
+                        <div class="vip-gc-label">${n.label}</div>
+                    </div>
+                    <div class="vip-gc-hover">
+                        ${n.status === 'available'
+                                    ? `<a href="tel:919891617171" class="vip-gc-enquire">📞 Call to Enquire</a>
+                                    <a href="https://wa.me/919891617171?text=Hi, I'm interested in the number ${encodeURIComponent(n.plate)}" target="_blank" class="vip-gc-whatsapp">💬 WhatsApp</a>`
+                                    : `<span class="vip-gc-sold-msg">This number has been sold</span>`
+                                }
+                    </div>`;
+                            grid.appendChild(card);
+                        });
+
+                    // Re-trigger reveal on new cards
+                    document.querySelectorAll('.vip-gallery-card').forEach(el => {
+                        el.classList.add('visible');
+                    });
+                }
+
+        // Init gallery on load
+        filterGallery();
+        sldInitCursor();
+        sldInitReveal();
+    </script>
+</body>
+
+</html>
