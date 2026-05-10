@@ -3647,3 +3647,1076 @@ input[type="range"].price-slider {
         border-left-width: 2px;
     }
 }
+
+
+/* ==========================================
+   VIP NUMBERS PAGE — HERO
+   ========================================== */
+.vip-hero {
+    padding-top: var(--nav-h);
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.vip-hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(105deg,
+            transparent,
+            transparent 40px,
+            rgba(255, 190, 60, 0.03) 40px,
+            rgba(255, 190, 60, 0.03) 42px);
+    animation: stripeMove 10s linear infinite;
+    pointer-events: none;
+}
+
+/* Left gold accent bar */
+.vip-hero::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15%;
+    height: 60%;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    z-index: 1;
+}
+
+/* Floating background number plates */
+.vip-plates-float {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.vip-plate-float {
+    position: absolute;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 190, 60, 0.06);
+    white-space: nowrap;
+    border: 1px solid rgba(255, 190, 60, 0.04);
+    padding: 6px 14px;
+    animation: floatDrift 14s ease-in-out infinite;
+}
+
+.vip-pf-1 {
+    top: 12%;
+    left: 8%;
+    animation-delay: 0s;
+    animation-duration: 16s;
+}
+
+.vip-pf-2 {
+    top: 28%;
+    left: 62%;
+    animation-delay: 2s;
+    animation-duration: 18s;
+}
+
+.vip-pf-3 {
+    top: 60%;
+    left: 20%;
+    animation-delay: 4s;
+    animation-duration: 14s;
+}
+
+.vip-pf-4 {
+    top: 78%;
+    left: 72%;
+    animation-delay: 1s;
+    animation-duration: 20s;
+}
+
+.vip-pf-5 {
+    top: 45%;
+    left: 45%;
+    animation-delay: 3s;
+    animation-duration: 17s;
+}
+
+@keyframes floatDrift {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(-1deg);
+    }
+
+    50% {
+        transform: translateY(-16px) rotate(1deg);
+    }
+}
+
+.vip-hero-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 72px;
+    align-items: center;
+    padding: 80px 60px;
+    width: 100%;
+}
+
+.vip-hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.vip-crown {
+    font-size: 18px;
+}
+
+.vip-hero-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(52px, 6.5vw, 92px);
+    line-height: 0.92;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-bottom: 28px;
+}
+
+.vip-hero-title em {
+    color: var(--gold);
+    font-style: italic;
+    display: block;
+}
+
+.vip-hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 460px;
+    margin-bottom: 40px;
+}
+
+.vip-hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* ── Showcase plate (right side) ── */
+.vip-hero-plate-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.vip-hero-plate-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.vip-hero-plate-label span {
+    width: 20px;
+    height: 1px;
+    background: var(--gold);
+    display: inline-block;
+}
+
+/* The actual number plate UI */
+.vip-showcase-plate {
+    background: #ffffff;
+    border-radius: 6px;
+    padding: 18px 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 3px solid #1a1a1a;
+    box-shadow: 0 0 0 6px rgba(255, 190, 60, 0.15), 0 20px 60px rgba(0, 0, 0, 0.5);
+    position: relative;
+    max-width: 360px;
+}
+
+.vip-showcase-plate::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 190, 60, 0.3);
+    pointer-events: none;
+}
+
+.vip-plate-india {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #1a3d7c;
+    background: #1a3d7c;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 3px;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    white-space: nowrap;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+}
+
+.vip-plate-number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 38px;
+    letter-spacing: 4px;
+    color: #111111;
+    text-transform: uppercase;
+    line-height: 1;
+    transition: all 0.2s;
+    flex: 1;
+    text-align: center;
+}
+
+.vip-plate-input-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 360px;
+}
+
+.vip-plate-input {
+    background: var(--dark2);
+    border: 1px solid var(--dark4);
+    color: var(--white);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+}
+
+.vip-plate-input::placeholder {
+    color: var(--muted2);
+    letter-spacing: 1px;
+    text-transform: none;
+    font-size: 12px;
+}
+
+.vip-plate-input:focus {
+    border-color: var(--gold);
+}
+
+.vip-plate-hint {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted2);
+    letter-spacing: 1px;
+}
+
+/* Stats below plate */
+.vip-hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--dark3);
+    max-width: 360px;
+}
+
+.vip-hero-stat {
+    padding: 16px 20px;
+    flex: 1;
+    text-align: center;
+}
+
+.vip-stat-sep {
+    width: 1px;
+    height: 40px;
+    background: var(--dark3);
+    flex-shrink: 0;
+}
+
+.vip-stat-num {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.vip-stat-num span {
+    color: var(--gold);
+    font-size: 18px;
+}
+
+.vip-stat-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+/* ==========================================
+   VIP — WHY SECTION
+   ========================================== */
+.vip-why {
+    background: var(--black);
+}
+
+.vip-why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 8px;
+}
+
+.vip-why-card {
+    background: var(--dark);
+    border: 1px solid var(--dark3);
+    padding: 36px 28px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.vip-why-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s var(--ease);
+}
+
+.vip-why-card:hover::before {
+    transform: scaleX(1);
+}
+
+.vip-why-card:hover {
+    border-color: rgba(255, 190, 60, 0.3);
+    transform: translateY(-4px);
+}
+
+.vip-why-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.vip-why-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: rgba(255, 190, 60, 0.4);
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+}
+
+.vip-why-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.vip-why-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+/* Mini example plate in each card */
+.vip-why-plate-eg {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #111;
+    background: #fff;
+    padding: 6px 12px;
+    display: inline-block;
+    border: 2px solid #222;
+    border-radius: 3px;
+}
+
+/* ==========================================
+   VIP — ABOUT SECTION
+   ========================================== */
+.vip-about {
+    background: var(--dark);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.vip-about::before {
+    content: 'VIP';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-display);
+    font-size: 320px;
+    font-weight: 900;
+    color: rgba(255, 190, 60, 0.025);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -10px;
+}
+
+.vip-about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    padding: 0 60px;
+}
+
+.vip-about-desc {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin: 20px 0 28px;
+    max-width: 480px;
+}
+
+.vip-about-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.vip-about-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.vip-list-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+}
+
+/* Plate stack showcase */
+.vip-plate-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.vip-stack-plates {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.vip-stack-plate {
+    background: var(--dark2);
+    border: 1px solid var(--dark3);
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, background 0.3s;
+}
+
+.vip-stack-plate::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--dark3);
+    transition: background 0.3s;
+}
+
+.vip-stack-plate:hover::before,
+.vip-stack-plate.vip-sp-featured::before {
+    background: var(--gold);
+}
+
+.vip-stack-plate.vip-sp-featured {
+    border-color: rgba(255, 190, 60, 0.3);
+    background: rgba(255, 190, 60, 0.04);
+}
+
+.vip-stack-plate:hover {
+    border-color: rgba(255, 190, 60, 0.2);
+}
+
+.vip-sp-state {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    flex-shrink: 0;
+    width: 50px;
+}
+
+.vip-sp-num {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 3px;
+    color: var(--white);
+    text-transform: uppercase;
+    flex: 1;
+}
+
+.vip-sp-num span {
+    color: var(--gold);
+}
+
+.vip-sp-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: rgba(255, 190, 60, 0.1);
+    padding: 3px 8px;
+    border: 1px solid rgba(255, 190, 60, 0.2);
+    white-space: nowrap;
+}
+
+.vip-stack-note {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 0;
+    border-top: 1px solid var(--dark3);
+}
+
+/* ==========================================
+   VIP — CROSS PROMO BAND
+   ========================================== */
+.vip-crosspromo {
+    background: var(--black);
+    border-top: 1px solid var(--dark3);
+    border-bottom: 1px solid var(--dark3);
+    padding: 60px;
+}
+
+.vip-crosspromo-inner {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.vip-crosspromo-icon {
+    font-size: 52px;
+    flex-shrink: 0;
+    opacity: 0.6;
+}
+
+.vip-crosspromo-inner>div {
+    flex: 1;
+    min-width: 200px;
+}
+
+.vip-crosspromo-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(28px, 3.5vw, 44px);
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.vip-crosspromo-sub {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 360px;
+}
+
+/* ==========================================
+   VIP — FINAL CTA
+   ========================================== */
+.vip-final-cta {
+    background: var(--dark);
+    padding: 100px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.vip-final-bg {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(105deg,
+            transparent,
+            transparent 40px,
+            rgba(255, 190, 60, 0.025) 40px,
+            rgba(255, 190, 60, 0.025) 42px);
+    pointer-events: none;
+}
+
+.vip-final-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+/* Decorative floating plates above title */
+.vip-final-plates {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.vip-fcta-plate {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: #111;
+    background: #fff;
+    padding: 7px 16px;
+    border: 2px solid #222;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+.vip-fcta-plate--dim {
+    opacity: 0.35;
+    transform: scale(0.9);
+}
+
+.vip-final-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(40px, 5.5vw, 72px);
+    text-transform: uppercase;
+    line-height: 0.95;
+    letter-spacing: -1px;
+}
+
+.vip-final-title em {
+    color: var(--gold);
+    font-style: italic;
+    display: block;
+}
+
+.vip-final-sub {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 480px;
+}
+
+.vip-final-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+/* ==========================================
+   VIP PAGE — RESPONSIVE
+   ========================================== */
+@media (max-width: 1100px) {
+    .vip-why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .vip-about-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 0 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .vip-hero-inner {
+        grid-template-columns: 1fr;
+        padding: 60px 24px;
+        gap: 48px;
+    }
+
+    .vip-why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vip-about-inner {
+        padding: 0 24px;
+    }
+
+    .vip-crosspromo {
+        padding: 48px 24px;
+    }
+
+    .vip-crosspromo-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .vip-final-cta {
+        padding: 72px 24px;
+    }
+
+    .vip-showcase-plate {
+        max-width: 100%;
+    }
+
+    .vip-hero-stats {
+        max-width: 100%;
+    }
+
+    .vip-plate-input-row {
+        max-width: 100%;
+    }
+
+    .vip-plates-float {
+        display: none;
+    }
+}
+
+
+/* ==========================================
+VIP GALLERY
+========================================== */
+.vip-gallery {
+    background: var(--black);
+}
+
+.vip-gallery-search-wrap {
+    align-self: flex-end;
+    padding-bottom: 4px;
+}
+
+.vip-gallery-search {
+    background: var(--dark2);
+    border: 1px solid var(--dark4);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 11px 18px;
+    outline: none;
+    width: 260px;
+    transition: border-color 0.2s;
+}
+
+.vip-gallery-search::placeholder {
+    color: var(--muted2);
+}
+
+.vip-gallery-search:focus {
+    border-color: var(--gold);
+}
+
+/* Filter tabs */
+.vip-filter-tabs {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+}
+
+.vip-filter-tab {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid var(--dark3);
+    padding: 9px 20px;
+    cursor: none;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+}
+
+.vip-filter-tab:hover {
+    color: var(--white);
+    border-color: rgba(255, 190, 60, 0.3);
+}
+
+.vip-filter-tab.active {
+    color: var(--black);
+    background: var(--gold);
+    border-color: var(--gold);
+}
+
+/* Gallery grid */
+.vip-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.vip-gallery-empty {
+    display: none;
+    text-align: center;
+    padding: 80px 0;
+}
+
+/* Gallery card */
+.vip-gallery-card {
+    background: var(--dark);
+    border: 1px solid var(--dark3);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.vip-gallery-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+}
+
+/* Status pill */
+.vip-gc-status {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px 4px 10px;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
+    z-index: 3;
+}
+
+.vip-gc-avail {
+    background: rgba(255, 190, 60, 0.15);
+    color: var(--gold);
+}
+
+.vip-gc-sold {
+    background: rgba(224, 48, 48, 0.15);
+    color: #e03030;
+}
+
+/* Plate display */
+.vip-gc-plate-wrap {
+    padding: 32px 20px 20px;
+    display: flex;
+    justify-content: center;
+    background: var(--dark2);
+}
+
+.vip-gc-plate {
+    background: #ffffff;
+    border: 2.5px solid #111;
+    border-radius: 4px;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    transition: opacity 0.2s;
+    max-width: 220px;
+    width: 100%;
+}
+
+.vip-gc-plate--sold {
+    opacity: 0.4;
+    filter: grayscale(1);
+}
+
+.vip-gc-plate-ind {
+    font-size: 7px;
+    background: #1a3d7c;
+    color: #fff;
+    padding: 3px 4px;
+    border-radius: 2px;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    letter-spacing: 1px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    flex-shrink: 0;
+}
+
+.vip-gc-plate-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    letter-spacing: 2.5px;
+    color: #111;
+    text-transform: uppercase;
+    line-height: 1;
+    text-align: center;
+    flex: 1;
+}
+
+/* Card body */
+.vip-gc-body {
+    padding: 14px 16px 16px;
+}
+
+.vip-gc-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.vip-gc-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(255, 190, 60, 0.08);
+    border: 1px solid rgba(255, 190, 60, 0.2);
+    padding: 2px 8px;
+}
+
+.vip-gc-label {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--white);
+}
+
+/* Hover overlay */
+.vip-gc-hover {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 8, 8, 0.92);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.25s var(--ease);
+    padding: 20px;
+}
+
+.vip-gallery-card:hover .vip-gc-hover {
+    opacity: 1;
+}
+
+.vip-gc-enquire,
+.vip-gc-whatsapp {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 11px 24px;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    transition: background 0.2s, color 0.2s;
+    width: 100%;
+    text-align: center;
+}
+
+.vip-gc-enquire {
+    background: var(--gold);
+    color: var(--black);
+}
+
+.vip-gc-enquire:hover {
+    background: var(--white);
+}
+
+.vip-gc-whatsapp {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.vip-gc-whatsapp:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.vip-gc-sold-msg {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+    .vip-gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .vip-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .vip-gallery-search {
+        width: 100%;
+    }
+
+    .vip-gallery .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .vip-gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
