@@ -33,10 +33,10 @@
             <li class="has-drop">
                 <a href="shop.html">Shop</a>
                 <div class="dropdown">
-                    <a href="shop.html">Hatchback</a>
-                    <a href="shop.html">Sedan</a>
-                    <a href="shop.html">SUV</a>
-                    <a href="shop.html">Compact SUV</a>
+                    <a href="shop.html?cat=Hatchback">Hatchback</a>
+                    <a href="shop.html?cat=Sedan">Sedan</a>
+                    <a href="shop.html?cat=SUV">SUV</a>
+                    <a href="shop.html?cat=MPV">MPV</a>
                 </div>
             </li>
             <li><a href="about.html">About</a></li>
@@ -213,17 +213,18 @@
             <div>
                 <div class="footer-col-title">Categories</div>
                 <ul class="footer-links">
-                    <li><a href="shop.html">SUV</a></li>
-                    <li><a href="shop.html">Sedan</a></li>
-                    <li><a href="shop.html">Hatchback</a></li>
-                    <li><a href="shop.html">Compact SUV</a></li>
+                    <li><a href="shop.html?cat=SUV">SUV</a></li>
+                    <li><a href="shop.html?cat=Sedan">Sedan</a></li>
+                    <li><a href="shop.html?cat=Hatchback">Hatchback</a></li>
+                    <li><a href="shop.html?cat=MPV">MPV</a></li>
                 </ul>
             </div>
             <div>
                 <div class="footer-col-title">Contact</div>
-                <div class="footer-contact-item"><span>📍</span><span>Your dealership address, City, State</span></div>
-                <div class="footer-contact-item"><span>📞</span><span>+91 XXXXX XXXXX</span></div>
-                <div class="footer-contact-item"><span>✉️</span><span>zeenik.tech@gmail.com</span></div>
+                <div class="footer-contact-item"><span>📍</span><span>KH No. 314 &amp; 415, Jhajjar Road,
+                        Bahadurgarh, Haryana 124507</span></div>
+                <div class="footer-contact-item"><span>📞</span><span>+91 98916 17171</span></div>
+                <div class="footer-contact-item"><span>✉️</span><span>sales.sldautomobiles@gmail.com</span></div>
                 <div class="footer-contact-item"><span>🕐</span><span>Mon–Sat: 9AM – 7PM</span></div>
             </div>
         </div>
@@ -269,18 +270,19 @@
                 { name: 'SUV', icon: '01' },
                 { name: 'Sedan', icon: '02' },
                 { name: 'Hatchback', icon: '03' },
-                { name: 'Compact SUV', icon: '04' },
+                { name: 'MPV', icon: '04' },
             ];
             const grid = document.getElementById('categoryGrid');
             const delays = ['reveal-delay-1', 'reveal-delay-2', 'reveal-delay-3', 'reveal-delay-4'];
 
             cats.forEach((cat, i) => {
                 const count = SLD_INVENTORY.filter(c => c.cat === cat.name).length;
+                const categoryImage = SLD_INVENTORY.find(c => c.cat === cat.name && c.image)?.image || '';
                 const a = document.createElement('a');
                 a.href = `shop.html?cat=${encodeURIComponent(cat.name)}`;
                 a.className = `cat-card reveal ${delays[i]}`;
                 a.innerHTML = `
-        <div class="cat-card-bg"></div>
+        <div class="cat-card-bg">${categoryImage ? `<img src="${categoryImage}" alt="${cat.name} cars">` : ''}</div>
         <div class="cat-card-overlay"></div>
         <div class="cat-card-num">${cat.icon}</div>
         <div class="cat-card-arrow">↗</div>
