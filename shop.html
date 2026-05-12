@@ -36,7 +36,7 @@
                     <a href="#" onclick="filterByCategory('SUV');return false;">SUV</a>
                     <a href="#" onclick="filterByCategory('Sedan');return false;">Sedan</a>
                     <a href="#" onclick="filterByCategory('Hatchback');return false;">Hatchback</a>
-                    <a href="#" onclick="filterByCategory('Compact SUV');return false;">Compact SUV</a>
+                    <a href="#" onclick="filterByCategory('MPV');return false;">MPV</a>
                 </div>
             </li>
             <li><a href="about.html">About</a></li>
@@ -225,7 +225,7 @@
                     <li><a href="#">SUV</a></li>
                     <li><a href="#">Sedan</a></li>
                     <li><a href="#">Hatchback</a></li>
-                    <li><a href="#">Compact SUV</a></li>
+                    <li><a href="shop.html?cat=MPV">MPV</a></li>
                 </ul>
             </div>
             <div>
@@ -315,7 +315,7 @@
 
             items.forEach((car, i) => {
                 const a = document.createElement('a');
-                a.href = '#';
+                a.href = `car_detail.html?id=${car.id}`;
                 a.className = 'car-card shop-card';
                 a.style.animationDelay = (i * 0.06) + 's';
                 a.innerHTML = sldBuildCard(car);
