@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Details — SLD Automobiles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,900&family=Barlow:wght@400;500;600&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursorDot" style="position:fixed;top:0;left:0">
+        <div class="cursor-dot"></div>
+    </div>
+    <div class="cursor" id="cursorRing" style="position:fixed;top:0;left:0">
+        <div class="cursor-ring"></div>
+    </div>
+
+    <!-- NAV -->
+    <nav id="mainNav">
+        <a href="home.html" class="nav-logo">
+            <img src="media/logo/sld_logo.png" alt="SLD Automobiles Logo" class="site-logo">
+        </a>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li class="has-drop">
+                <a href="shop.html" class="active">Shop</a>
+                <div class="dropdown">
+                    <a href="shop.html?cat=Hatchback">Hatchback</a>
+                    <a href="shop.html?cat=Sedan">Sedan</a>
+                    <a href="shop.html?cat=SUV">SUV</a>
+                    <a href="shop.html?cat=MPV">MPV</a>
+                </div>
+            </li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="sell.html">Sell Your Car</a></li>
+            <li><a href="vip.html">VIP Numbers</a></li>
+            <li><a href="contact.html" class="nav-cta">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="cd-breadcrumb">
+        <a href="home.html">Home</a>
+        <span>›</span>
+        <a href="shop.html">Shop</a>
+        <span>›</span>
+        <span id="cdBreadcrumbName">Loading...</span>
+    </div>
+
+    <!-- MAIN DETAIL LAYOUT -->
+    <section class="cd-section">
+        <div class="cd-grid">
+
+            <!-- LEFT: Gallery -->
+            <div class="cd-gallery">
+                <div class="cd-main-img-wrap">
+                    <div class="cd-main-img-inner">
+                        <img src="" alt="Car" class="cd-main-img" id="cdMainImg">
+                        <div class="cd-main-placeholder" id="cdMainPlaceholder">
+                            <span>📷</span>
+                            <span>No Image Available</span>
+                        </div>
+                    </div>
+                    <div class="cd-img-badge" id="cdImgBadge"></div>
+                    <button class="cd-img-arrow cd-img-prev" onclick="changeImg(-1)" aria-label="Previous">‹</button>
+                    <button class="cd-img-arrow cd-img-next" onclick="changeImg(1)" aria-label="Next">›</button>
+                    <div class="cd-img-counter" id="cdImgCounter">1 / 1</div>
+                </div>
+                <div class="cd-thumbs" id="cdThumbs"></div>
+            </div>
+
+            <!-- RIGHT: Info -->
+            <div class="cd-info">
+                <div class="cd-cat-tag" id="cdCatTag"></div>
+                <h1 class="cd-title" id="cdTitle">Loading...</h1>
+
+                <div class="cd-price-row">
+                    <div class="cd-price" id="cdPrice">—</div>
+                    <div class="cd-old-price" id="cdOldPrice"></div>
+                </div>
+
+                <div class="cd-specs-bar" id="cdSpecsBar"></div>
+                <div class="cd-divider"></div>
+
+                <div class="cd-desc-block">
+                    <div class="cd-block-label">About This Car</div>
+                    <p class="cd-desc" id="cdDesc">—</p>
+                </div>
+
+                <div class="cd-divider"></div>
+
+                <div class="cd-spec-table-wrap">
+                    <div class="cd-block-label">Specifications</div>
+                    <div class="cd-spec-table" id="cdSpecTable"></div>
+                </div>
+
+                <div class="cd-divider"></div>
+
+                <div class="cd-cta-row">
+                    <a href="tel:919891617171" class="btn-primary cd-btn-call">
+                        📞 Call to Enquire
+                    </a>
+                    <a id="cdWhatsapp" href="#" target="_blank" class="cd-btn-whatsapp">
+                        💬 WhatsApp
+                    </a>
+                    <a href="contact.html" class="btn-ghost cd-btn-contact">
+                        Send Enquiry
+                    </a>
+                </div>
+
+                <div class="cd-assurance">
+                    <div class="cd-assurance-item"><span>🔍</span><span>200-Point Inspected</span></div>
+                    <div class="cd-assurance-item"><span>📄</span><span>Clean Paperwork</span></div>
+                    <div class="cd-assurance-item"><span>💰</span><span>Finance Available</span></div>
+                    <div class="cd-assurance-item"><span>🤝</span><span>Best Price Guaranteed</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIMILAR CARS -->
+    <section class="cd-similar section">
+        <div class="section-header">
+            <div>
+                <div class="section-label">You May Also Like</div>
+                <h2 class="section-title">Similar<br><em>Vehicles.</em></h2>
+            </div>
+            <a href="shop.html" class="view-all">
+                View all
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </a>
+        </div>
+        <div class="car-grid" id="cdSimilarGrid"></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">SLD <span>Automobiles</span></div>
+                <p class="footer-tagline">Your trusted destination for premium certified pre-owned vehicles in the
+                    region. Drive bold, drive confident.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">f</a>
+                    <a href="#" class="social-link">in</a>
+                    <a href="#" class="social-link">ig</a>
+                    <a href="#" class="social-link">yt</a>
+                </div>
+            </div>
+            <div>
+                <div class="footer-col-title">Quick Links</div>
+                <ul class="footer-links">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="shop.html">Shop Cars</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="sell.html">Sell Your Car</a></li>
+                    <li><a href="vip.html">VIP Numbers</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Categories</div>
+                <ul class="footer-links">
+                    <li><a href="shop.html?cat=SUV">SUV</a></li>
+                    <li><a href="shop.html?cat=Sedan">Sedan</a></li>
+                    <li><a href="shop.html?cat=Hatchback">Hatchback</a></li>
+                    <li><a href="shop.html?cat=MPV">MPV</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Contact</div>
+                <div class="footer-contact-item"><span>📍</span><span>KH No. 314 &amp; 415, Jhajjar Road, Bahadurgarh,
+                        Haryana 124507</span></div>
+                <div class="footer-contact-item"><span>📞</span><span>+91 9891617171</span></div>
+                <div class="footer-contact-item"><span>✉️</span><span>sales.sldautomobiles@gmail.com</span></div>
+                <div class="footer-contact-item"><span>🕐</span><span>Mon–Sat: 9AM – 7PM</span></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-copy">© 2025 <span>SLD Automobiles</span>. All rights reserved.</div>
+            <div class="footer-copy">Built with 🔥 for the road.</div>
+        </div>
+    </footer>
+
+    <!-- ✅ FIX: inventory.js loaded ONCE only, right before the inline script -->
+    <script src="inventory.js"></script>
+    <script>
+        /* ============================================================
+           CAR DETAIL PAGE
+           ============================================================ */
+
+        /* ── 1. Read the car from URL param ── */
+        let galleryImages = [];
+        let currentImg = 0;
+
+        const params = new URLSearchParams(window.location.search);
+        const carId = params.get('id');
+        const car = SLD_INVENTORY.find(c => String(c.id) === carId);
+
+        if (!car) {
+            document.getElementById('cdTitle').textContent = 'Car Not Found';
+            document.getElementById('cdDesc').textContent =
+                'This listing may have been removed. Browse our full inventory below.';
+        } else {
+            populatePage(car);
+        }
+
+        function populatePage(car) {
+            /* Page title & breadcrumb */
+            document.title = car.name + ' — SLD Automobiles';
+            document.getElementById('cdBreadcrumbName').textContent = car.name;
+
+            /* Category tag */
+            document.getElementById('cdCatTag').textContent = car.cat;
+
+            /* Title */
+            document.getElementById('cdTitle').textContent = car.name;
+
+            /* Price — uses sldFmtPrice from inventory.js (safe against null) */
+            const priceEl = document.getElementById('cdPrice');
+            if (car.price) {
+                priceEl.innerHTML = `<sup>₹</sup>${fmtPriceDetail(car.price)}`;
+            } else {
+                priceEl.textContent = 'Price on Request';
+            }
+            if (car.oldPrice) {
+                document.getElementById('cdOldPrice').innerHTML =
+                    `<span>was</span> ₹${fmtPriceDetail(car.oldPrice)}`;
+            }
+
+            /* Badge */
+            if (car.badge) {
+                const b = document.getElementById('cdImgBadge');
+                b.textContent = car.badge;
+                b.className = 'cd-img-badge' +
+                    (car.badge.toLowerCase().includes('sold') ? ' cd-badge-red' : '');
+            }
+
+            /* Quick specs bar */
+            const specs = [
+                { val: car.year, key: 'Year' },
+                { val: sldFmtKm(car.km), key: 'Kms Driven' },
+                { val: car.fuel, key: 'Fuel' },
+                { val: car.trans || '—', key: 'Transmission' },
+            ];
+            document.getElementById('cdSpecsBar').innerHTML = specs.map(s => `
+                <div class="cd-spec-item">
+                    <div class="cd-spec-val">${s.val}</div>
+                    <div class="cd-spec-key">${s.key}</div>
+                </div>`).join('');
+
+            /* Description */
+            document.getElementById('cdDesc').textContent = car.desc ||
+                `The ${car.name} is a ${car.year} ${car.cat.toLowerCase()} with ${sldFmtKm(car.km)} driven. ` +
+                `Powered by a ${car.fuel.toLowerCase()} engine` +
+                (car.trans ? ` with a ${car.trans.toLowerCase()} gearbox` : '') +
+                `. This certified pre-owned vehicle has been thoroughly inspected and is ready for the road. ` +
+                `Available at SLD Automobiles, Bahadurgarh — transparent pricing, clean paperwork, and easy finance options.`;
+
+            /* Full spec table */
+            const tableRows = [
+                { label: 'Brand', val: car.name.split(' ')[0] },
+                { label: 'Model', val: car.name },
+                { label: 'Category', val: car.cat },
+                { label: 'Year', val: car.year },
+                { label: 'Fuel Type', val: car.fuel },
+                { label: 'Transmission', val: car.trans || '—' },
+                { label: 'Kms Driven', val: sldFmtKm(car.km) },
+                { label: 'Colour', val: car.color || '—' },
+                { label: 'Ownership', val: car.owners ? car.owners + (car.owners === 1 ? ' Owner' : ' Owners') : '—' },
+                { label: 'Insurance', val: car.insurance || '—' },
+                { label: 'RTO', val: car.rto || '—' },
+            ];
+            document.getElementById('cdSpecTable').innerHTML = tableRows.map(r => `
+                <div class="cd-spec-row">
+                    <span class="cd-spec-row-label">${r.label}</span>
+                    <span class="cd-spec-row-val">${r.val}</span>
+                </div>`).join('');
+
+            /* WhatsApp deep link */
+            const priceStr = car.price ? `₹${fmtPriceDetail(car.price)}` : 'Price on Request';
+            const msg = `Hi, I'm interested in the ${car.name} (${car.year}) listed at ${priceStr} on SLD Automobiles.`;
+            document.getElementById('cdWhatsapp').href =
+                `https://wa.me/919891617171?text=${encodeURIComponent(msg)}`;
+
+            /* Gallery — primary image first, then extras (deduped) */
+            const allImages = [];
+            if (car.image) allImages.push(car.image);
+            if (car.images && car.images.length) {
+                car.images.forEach(img => { if (img && !allImages.includes(img)) allImages.push(img); });
+            }
+            initGallery(allImages);
+
+            /* Similar cars */
+            const similar = SLD_INVENTORY
+                .filter(c => c.id !== car.id && c.cat === car.cat)
+                .slice(0, 3);
+            const grid = document.getElementById('cdSimilarGrid');
+            similar.forEach(c => {
+                const a = document.createElement('a');
+                a.href = `car_detail.html?id=${c.id}`;
+                a.className = 'car-card';
+                a.innerHTML = sldBuildCard(c);   // safe — sldFmtPrice guards null
+                grid.appendChild(a);
+            });
+            if (!similar.length) document.querySelector('.cd-similar').style.display = 'none';
+        }
+
+        /* ── Gallery ── */
+        function initGallery(images) {
+            galleryImages = images;
+            const mainImg = document.getElementById('cdMainImg');
+            const placeholder = document.getElementById('cdMainPlaceholder');
+            const thumbsWrap = document.getElementById('cdThumbs');
+
+            if (!images.length) {
+                mainImg.style.display = 'none';
+                placeholder.style.display = 'flex';
+                document.querySelectorAll('.cd-img-arrow').forEach(a => a.style.display = 'none');
+                document.getElementById('cdImgCounter').style.display = 'none';
+                return;
+            }
+
+            placeholder.style.display = 'none';
+            mainImg.style.display = '';
+            setMainImg(0);
+
+            thumbsWrap.innerHTML = '';
+            images.forEach((src, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'cd-thumb' + (i === 0 ? ' cd-thumb-active' : '');
+                btn.onclick = () => setMainImg(i);
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `View ${i + 1}`;
+                btn.appendChild(img);
+                thumbsWrap.appendChild(btn);
+            });
+
+            document.getElementById('cdImgCounter').textContent = `1 / ${images.length}`;
+            if (images.length < 2) {
+                document.querySelectorAll('.cd-img-arrow').forEach(a => a.style.display = 'none');
+            }
+        }
+
+        function setMainImg(index) {
+            if (!galleryImages.length) return;
+            currentImg = (index + galleryImages.length) % galleryImages.length;
+            const mainImg = document.getElementById('cdMainImg');
+            mainImg.style.opacity = '0';
+            setTimeout(() => {
+                mainImg.src = galleryImages[currentImg];
+                mainImg.style.opacity = '1';
+            }, 150);
+            document.querySelectorAll('.cd-thumb').forEach((t, i) => {
+                t.classList.toggle('cd-thumb-active', i === currentImg);
+            });
+            document.getElementById('cdImgCounter').textContent =
+                `${currentImg + 1} / ${galleryImages.length}`;
+        }
+
+        function changeImg(dir) { setMainImg(currentImg + dir); }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') changeImg(-1);
+            if (e.key === 'ArrowRight') changeImg(1);
+        });
+
+        /* ── Local price formatter (detail page shows full lakh value) ── */
+        function fmtPriceDetail(p) {
+            if (!p) return 'Price on Request';
+            const l = p / 100000;
+            return l % 1 === 0 ? l + 'L' : l.toFixed(2) + 'L';
+        }
+
+        /* ── Nav scroll ── */
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 40);
+        });
+
+        /* ── Cursor ── */
+        sldInitCursor();
+    </script>
+</body>
+
+</html>
